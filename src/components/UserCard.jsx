@@ -7,20 +7,22 @@ import {
   Box,
   CardActions,
 } from "@mui/material";
-
+import {Link} from "react-router-dom"
 
 function UserCard({ user, handleDelete }) {
 
   return (
     <Card sx={{ maxWidth: 600, m: 2, borderRadius: 3, boxShadow: 3 }}>
-      <CardHeader
-        title={user.name}
-        subheader={user.username}
-        sx={{
-          backgroundColor: "#f5f5f5",
-          borderBottom: "1px solid #ddd",
-        }}
-      />
+      <Link to={`/users/${user.id}/edit`}>
+        <CardHeader
+          title={user.name}
+          subheader={user.username}
+          sx={{
+            backgroundColor: "#f5f5f5",
+            borderBottom: "1px solid #ddd",
+          }}
+        />
+      </Link>
       <CardContent>
         {/* Email */}
         <Typography variant="body1" sx={{ mb: 1 }}>

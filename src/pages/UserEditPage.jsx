@@ -9,6 +9,7 @@ import {
   Paper,
   CircularProgress,
 } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 const getUser = async (id) => {
   const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
@@ -20,13 +21,13 @@ const postUser = async (user) => {
   return data;
 };
 function UserEditPage() {
-  const id =1;
+  const {userId} = useParams();
 
-
+console.log(userId)
   // Fetch user with React Query
   const { data: userData, isError, isLoading } = useQuery({
-    queryKey: ["users", id], // cache key
-    queryFn: ()=>getUser(id)
+    queryKey: ["users", userId], // cache key
+    queryFn: ()=>getUser(userId)
   });
   // Local state to edit user form
   const [user, setUser] = useState(null);

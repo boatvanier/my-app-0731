@@ -2,26 +2,26 @@ import React , { Fragment, useEffect } from "react"
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
-
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import UsersPage from "./pages/UsersPage"
+import UserListPage from "./pages/UserListPage"
+import UserEditPage from "./pages/UserEditPage"
+import HomePage from "./pages/HomePage"
+import Layout from "./layout/Layout"
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [name, setName] = useState("")
-
-  useEffect(()=>{
-      document.title =`Hi, ${name}`
-  },[name])
-
-
+ 
   return (
-    <>
-    <button onClick={()=>setCount(count+1)}>click me</button>
-    <p>this button has been clicked {count} times</p>
-
-    <input type="text" value={name} onChange={e=>setName(e.target.value)}></input>
-    <p>your name is {name}</p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />} >
+          <Route index element={<HomePage/>} />
+          <Route path="/users" element={<UsersPage/>} />
+          <Route path="/userslist" element={<UserListPage/>} />
+          <Route path="/users/:userId/edit" element={<UserEditPage/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
